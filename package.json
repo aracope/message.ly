@@ -1,10 +1,10 @@
 {
   "name": "messagely",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest -i"
+    "test": "NODE_ENV=test jest --runInBand",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +18,15 @@
     "jsonwebtoken": "^8.3.0",
     "pg": "^8.3.3",
     "supertest": "^4.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aracope/message.ly.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/aracope/message.ly/issues"
+  },
+  "homepage": "https://github.com/aracope/message.ly#readme",
+  "description": ""
 }
