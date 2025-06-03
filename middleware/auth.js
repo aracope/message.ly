@@ -9,7 +9,7 @@ function authenticateJWT(req, res, next) {
   try {
     const tokenFromBody = req.body._token;
     const payload = jwt.verify(tokenFromBody, SECRET_KEY);
-    req.user = payload; // create a current user
+    res.locals.user = payload; // create a current user
     return next();
   } catch (err) {
     return next();
@@ -19,7 +19,7 @@ function authenticateJWT(req, res, next) {
 /** Middleware: Requires user is authenticated. */
 
 function ensureLoggedIn(req, res, next) {
-  if (!req.user) {
+  if (!res.locals.user) {
     return next({ status: 401, message: "Unauthorized" });
   } else {
     return next();
@@ -30,7 +30,7 @@ function ensureLoggedIn(req, res, next) {
 
 function ensureCorrectUser(req, res, next) {
   try {
-    if (req.user.username === req.params.username) {
+    if (res.locals.user.username === req.params.username) {
       return next();
     } else {
       return next({ status: 401, message: "Unauthorized" });
